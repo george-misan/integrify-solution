@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./Card.css";
-import Button from "../Button/Button";
+import "./style.css";
+
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 export default function Card() {
   const [users, setUsers] = useState([]);
@@ -25,7 +26,7 @@ export default function Card() {
   }
 
   return (
-    <div className="flex">
+    <div className="wrapper App flex">
       {users.map((user, index) => (
         <div className="p-4 rounded-md shadow border w-1-4" key={user.id}>
           <div className="flexHere bg-gray h-25 w-25 rounded-full mb-20">
@@ -36,9 +37,11 @@ export default function Card() {
           <div className="mb-20">
             <h2 className="font-semibold">{user.name}</h2>
             <p className="font-light italic">@{user.username}</p>
-            <a href="#">http://{user.website}</a>
+            <a href={user.website}>http://{user.website}</a>
           </div>
-          <Button />
+          <Link className="btn" to={"/users/" + user.id}>
+            MORE DETAILS
+          </Link>
         </div>
       ))}
     </div>
